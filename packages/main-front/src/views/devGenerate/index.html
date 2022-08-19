@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 500px;
+            height: 300px;
+            background-color: rgb(237, 230, 230);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <p style="border: 1px solid gray;width:200px" draggable="true" id="btn">用来拖拽的按钮</p>
+    <div id="container"> </div>
+    <script>
+        const btn = document.getElementById('btn');
+        const box = document.getElementById('container');
+        // 当拖拽元素或选中的文本时触发
+        btn.ondrag = (e) => {
+            // console.log('选定拖拽')
+            e.target.style.color = 'green';
+            e.dataTransfer.setData("testname", 'ev.target.id');
+            e.dataTransfer.setData("text/plain", 'ev.target.id');
+        }
+        // 当元素或选中的文本在可释放目标上被释放时触发
+        box.ondrop = (e) => {
+            e.preventDefault()
+            console.log('释放')
+            console.log(e.dataTransfer.getData("testname"));
+        }
+        // 当元素或选中的文本被拖到一个可释放目标上时触发
+        box.ondragover = (e) => {
+            e.preventDefault()
+            e.dataTransfer.dropEffect = "copy";
+            // console.log('有进入')
+        }
+    </script>
+</body>
+
+</html>

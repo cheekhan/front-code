@@ -1,0 +1,13 @@
+{
+  "name": "@wzk/api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "rollup --config rollup.config.js -w",
+    "build": "rollup --config rollup.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

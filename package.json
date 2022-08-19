@@ -1,0 +1,27 @@
+{
+  "name": "front-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "create:lib": "node ./scripts/create-lib.js",
+    "build": "pnpm --filter packages/main-front run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.3",
+    "esbuild": "^0.14.48",
+    "esbuild-plugin-d.ts": "^1.1.0",
+    "execa": "^4.0.2",
+    "fs-extra": "^10.1.0",
+    "minimist": "^1.2.6",
+    "rollup": "^2.75.7",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-typescript2": "^0.32.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  }
+}

@@ -1,0 +1,1 @@
+export {default as fetchHttp, create as createFetchHttp} from "./fetch";
