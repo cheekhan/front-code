@@ -6,9 +6,11 @@ import xkLoginPage from '../views/login/index..vue';
 import materialContainer from '../views/material/index.vue';
 import materialArticleList from '../views/material/articleMaterial/articleList.vue';
 
-
 //组件示例
 import ExampleCropper from "../views/example/cropper.vue"
+
+// 系统管理
+import systemConfigUserInfo from "../views/systemConfig/userConfig.vue"
 
 //未来会拓展的动态路由
 const asyncRoute: RouteRecordRaw[] = [
@@ -27,6 +29,14 @@ const asyncRoute: RouteRecordRaw[] = [
         children: [
             {path: "", redirect: "/example/cropper"},
             {path: "cropper", component: ExampleCropper}
+        ]
+    },
+    { // 系统配置
+        path: "/systemConfig",
+        component: materialContainer,
+        children: [
+            {path: "", redirect: "/systemConfig/userinfo"},
+            {path: "userinfo", component: systemConfigUserInfo}
         ]
     }
 ];

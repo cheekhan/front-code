@@ -1,10 +1,10 @@
 import 'element-plus/dist/index.css';
 
 import wzkLogin from './components/wzkLogin/index.vue';
-import wzkCropper from "./components/wzkCropper/index.vue";
+import wzkImgCut from "./components/wzkImgCut/index.vue";
 
-export {wzkLogin, wzkCropper};
+export {wzkLogin, wzkImgCut};
 
 export default {
-    wzkLogin, wzkCropper
+    wzkLogin, wzkImgCut
 };

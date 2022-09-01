@@ -2,6 +2,7 @@
 import {} from 'vue';
 import layOut from './components/layout/index.vue';
 
+
 </script>
 
 <template>

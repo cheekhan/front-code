@@ -1,8 +1,38 @@
-/**
- * 处理从 input 读取的文件，并返回一个base64
- */
+import {nanoid} from "nanoid";
 
-export default function (): Promise<string> {
+/**
+ * 上传图片接口
+ * @param blob ： 流
+ * @param uploadUrl ： 上传链接
+ */
+export function uploadImg(blob: Blob, uploadUrl: string): Promise<Response> {
+    const formData = new FormData();
+    formData.append('file', blob, `${nanoid()}.png`);
+    const headers = new Headers()
+    headers.append('Content-Type', 'multipart/form-data')
+    return new Promise((resolve, reject) => {
+
+        fetch(uploadUrl, {
+            method: "POST",
+            headers: {},
+            body: formData,
+        }).then(r => {
+            if (r.status < 400) {
+                resolve(r)
+            } else {
+                reject(r)
+            }
+            resolve(r)
+        }).catch(e => {
+
+        })
+    })
+}
+
+/**
+ * 读取一个图片资源，并返回bases64编码
+ */
+export function getFileToBase64(): Promise<string> {
     return new Promise((resolve, reject) => {
         let input = document.createElement('input') as HTMLInputElement;
         input.type = 'file'
@@ -18,6 +48,10 @@ export default function (): Promise<string> {
     })
 }
 
+/**
+ * 内部处理文件的函数
+ * @param file
+ */
 function fileToImg(file: File): Promise<string> {
     if (file.type.startsWith('image')) {
         return new Promise((resolve, reject) => {

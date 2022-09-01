@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import {ref} from "vue"
-import {wzkCropper} from "@wzk/design"
+import {wzkImgCut} from "@wzk/design"
 
 const imgUrl = ref("")
 
@@ -12,7 +12,7 @@ function handleCrop(blob: Blob) {
 </script>
 
 <template>
-  <wzkCropper @crop="handleCrop"></wzkCropper>
+  <wzkImgCut></wzkImgCut>
   <div>
     <img :src="imgUrl" alt="" style="height: 200px;">
   </div>

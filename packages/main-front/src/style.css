@@ -12,10 +12,16 @@
 
     /*    自定义的全局css变量 #409EFF */
     /*--main-color: #409EFF;*/
-    --main-color: #117c93;
+    --main-color: #409EFF;
 }
 
 * {
     margin: 0;
     padding: 0;
+}
+
+/* 在该项目中，全局的滚动被屏蔽 */
+::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none;
 }

@@ -1,50 +1,106 @@
-<script lang="ts" setup>
-import {ref} from "vue"
-
-
-
-</script>
-
 <template>
   <div class='xk-cropper-container' :key='selfKey'>
     <!-- 选择图片 -->
     <slot name='open'>
       <div class='open-file-btn' @click='handleClickGetFile'>选择本地图片</div>
     </slot>
-    <div class='full-screen-box' v-if='sourceBase64'>
-      <!-- 主要区域：最大尺寸为900 -->
-      <div class='main-body'>
-        <div class='btns'>
-          <span class='iconfont icon-xk-check' title='保存' @click='crop'></span>
-          <span class='iconfont icon-xk-icon' title='取消' @click='exit'></span>
-        </div>
-        <div style='width:100%;height:100%'>
-          <img id='xk-cropper-img-box' :src='sourceBase64' alt='' @load='draw'>
-        </div>
-        <div class='tools'>
-          <div>
-            <span title='缩小' class='iconfont icon-xk-suoxiao' @click='zommOut'></span>
-            <span title='放大' class='iconfont icon-xk-kuoda' @click='zoomIn'></span>
-            <span title='旋转' class='iconfont icon-xk-xuanzhuan' @click='rotate'></span>
-            <span title='重置' class='iconfont icon-xk-lajitongshanchu' @click='reset'></span>
+    <Teleport to="body">
+      <div class='full-screen-box' v-if='sourceBase64'>
+        <!-- 主要区域：最大尺寸为900 -->
+        <div class='main-body'>
+          <div class='btns'>
+            <span class='iconfont icon-xk-check' title='保存' @click='handleCrop'></span>
+            <span class='iconfont icon-xk-icon' title='取消' @click='exit'></span>
           </div>
-        </div>
-        <!-- loading -->
-        <div v-if='imgUploading' class='loading'>
-          <div class='sk-chase'>
-            <div class='sk-chase-dot'></div>
-            <div class='sk-chase-dot'></div>
-            <div class='sk-chase-dot'></div>
-            <div class='sk-chase-dot'></div>
-            <div class='sk-chase-dot'></div>
-            <div class='sk-chase-dot'></div>
+          <div style='width:100%;height:100%'>
+            <img id='xk-cropper-img-box' :src='sourceBase64' alt='' @load='handleImgLoad'>
+          </div>
+          <div class='tools'>
+            <div>
+              <span title='缩小' class='iconfont icon-xk-suoxiao' @click='handleZoomOut'></span>
+              <span title='放大' class='iconfont icon-xk-kuoda' @click='handleZoomIn'></span>
+              <span title='旋转' class='iconfont icon-xk-xuanzhuan' @click='handleRotate'></span>
+              <span title='重置' class='iconfont icon-xk-lajitongshanchu' @click='handleReset'></span>
+            </div>
+          </div>
+          <!-- loading -->
+          <div v-if='imgUploading' class='loading'>
+            <div class='sk-chase'>
+              <div class='sk-chase-dot'></div>
+              <div class='sk-chase-dot'></div>
+              <div class='sk-chase-dot'></div>
+              <div class='sk-chase-dot'></div>
+              <div class='sk-chase-dot'></div>
+              <div class='sk-chase-dot'></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Teleport>
+
   </div>
 
 </template>
+
+<script lang="ts" setup>
+import {defineEmits, defineProps} from "vue"
+import index from "./index"
+import createCropper from "./createCropper";
+import "cropperjs/dist/cropper.css";
+
+interface propsType {
+  uploadUrl?: string
+}
+
+interface emitsType {
+  (e: 'crop', blob: Blob): void,
+
+  (e: "upload-err", msg: any): void
+}
+
+const props = defineProps<propsType>();
+const emits = defineEmits<emitsType>();
+// 导入主逻辑
+const {selfKey, sourceBase64, exit, handleClickGetFile} = index(props);
+// 导入剪切功能
+const {cropper, imgUploading, draw, crop, zoomIn, zoomOut, rotate, reset} = createCropper(props)
+
+// 图片加载完成
+function handleImgLoad() {
+  draw('xk-cropper-img-box')
+}
+
+// 分别处理：缩小，放大，旋转，重置
+function handleZoomOut() {
+  zoomOut()
+}
+
+function handleZoomIn() {
+  zoomIn()
+}
+
+function handleRotate() {
+  rotate()
+}
+
+function handleReset() {
+  reset()
+}
+
+//保存
+function handleCrop() {
+  crop().then(blob => {
+    emits('crop', blob)
+    exit()
+  }).catch(e => {
+    emits('upload-err', e)
+  })
+}
+
+// 处理导出的内容
+defineExpose({exit})
+
+</script>
 
 <style lang="less" scoped>
 @import "index.css";
@@ -83,7 +139,8 @@ import {ref} from "vue"
 .main-body {
   width: 100%;
   height: 100%;
-  padding: 15vh 0;
+  //padding: 15vh 0;
+  padding: 30px;
   box-sizing: border-box;
   margin: auto;
   position: relative;
@@ -254,10 +311,3 @@ import {ref} from "vue"
 // 加载动画 --- end
 
 </style>
-
-<!--<style>-->
-<!--::-webkit-scrollbar {-->
-<!--  display: none;-->
-<!--  scrollbar-width: none;-->
-<!--}-->
-<!--</style>-->

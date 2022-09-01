@@ -11,7 +11,9 @@ import layTopBar from './topBar.vue';
     <lay-menus></lay-menus>
     <div class='right'>
       <layTopBar></layTopBar>
-      <router-view style="width:100%;height:calc(100% - 60px)"></router-view>
+      <div class="router-container">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -29,9 +31,18 @@ import layTopBar from './topBar.vue';
   width: 0;
   flex-grow: 1;
   min-width: 900px;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
   box-sizing: border-box;
   background-color: #f1f3fb;
+}
+
+.router-container {
+  width: 100%;
+  height: calc(100% - 60px);
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 </style>
