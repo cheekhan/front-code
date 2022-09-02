@@ -1,16 +1,21 @@
-# Vue 3 + TypeScript + Vite
+# 基于vue3的组件库
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 零、使用方式
 
-## Recommended IDE Setup
+- 安装组件库： `npm install @cheekhan/design --save`
+- 导入组件：`import {wzkImgCut} from "@cheekhan/design"`
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## 一、图片裁剪组件库
 
-## Type Support For `.vue` Imports in TS
+> 组件库基于 cropperJS 进行开发
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+### 组件 props
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+- `uploadUrl?:string` : 截图后，进行图片上传的链接。为空则不上传
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+### 事件 emits
+
+- `crop` ：裁剪事件。返回裁剪图片的blob。可以用于上传，或者转为base64(URL.createObjectURL(blob))后进行展示
+
+- `upload-err` ：如果配置了上传链接，则会在上传失败时触发。
+

@@ -8,6 +8,7 @@ import {getFileToBase64} from "./utils"
 export default function (props: propsType): indexTypes {
     const selfKey = ref(1)
     const sourceBase64 = ref("")
+    const containerId = Symbol()
 
 
     function exit() {

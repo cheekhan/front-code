@@ -1,8 +1,9 @@
 {
-  "name": "@wzk/design",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@cheekhan/design",
+  "version": "0.0.2",
+  "description": "适用于vue3+ts的组件库",
   "type": "module",
+  "private": false,
   "main": "src/index.ts",
   "scripts": {
     "dev": "vite",
@@ -13,12 +14,31 @@
     "cropperjs": "^1.5.12",
     "element-plus": "^2.2.13",
     "nanoid": "^4.0.0",
+    "pattern.css": "^1.0.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.3",
+    "sass": "^1.54.8",
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
     "vue-tsc": "^0.39.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cheekhan/front-code/tree/main/packages/wzk-design"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "vue3",
+    "typescript",
+    "裁剪",
+    "组件",
+    "cropper",
+    ""
+  ],
+  "license": "MIT"
 }

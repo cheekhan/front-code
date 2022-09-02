@@ -1,10 +1,12 @@
 <template>
-  <div class='xk-cropper-container' :key='selfKey'>
+  <div id='cheekhan-cropper-container' :class='embedStyle' :key='selfKey'>
     <!-- 选择图片 -->
     <slot name='open'>
-      <div class='open-file-btn' @click='handleClickGetFile'>选择本地图片</div>
+      <div class="slot-open">
+        <div class='open-file-btn' @click='handleClickGetFile'>选择本地图片</div>
+      </div>
     </slot>
-    <Teleport to="body">
+    <Teleport to="body" :disabled="embed">
       <div class='full-screen-box' v-if='sourceBase64'>
         <!-- 主要区域：最大尺寸为900 -->
         <div class='main-body'>
@@ -37,19 +39,20 @@
         </div>
       </div>
     </Teleport>
-
   </div>
 
 </template>
 
 <script lang="ts" setup>
-import {defineEmits, defineProps} from "vue"
+import {defineEmits, defineProps, computed} from "vue"
 import index from "./index"
 import createCropper from "./createCropper";
 import "cropperjs/dist/cropper.css";
+import "pattern.css"
 
 interface propsType {
-  uploadUrl?: string
+  uploadUrl?: string,
+  embed?: boolean
 }
 
 interface emitsType {
@@ -62,8 +65,13 @@ const props = defineProps<propsType>();
 const emits = defineEmits<emitsType>();
 // 导入主逻辑
 const {selfKey, sourceBase64, exit, handleClickGetFile} = index(props);
+const containerId = Symbol()
 // 导入剪切功能
 const {cropper, imgUploading, draw, crop, zoomIn, zoomOut, rotate, reset} = createCropper(props)
+// 计算嵌入式的样式
+const embedStyle = computed(() => {
+  return props.embed ? ['embed', 'pattern-dots-sm'] : []
+})
 
 // 图片加载完成
 function handleImgLoad() {
@@ -110,8 +118,23 @@ defineExpose({exit})
   background-color: #333;
 }
 
-.xk-cropper-container {
+#cheekhan-cropper-container {
   display: inline-block;
+  position: relative;
+}
+
+// 如果是嵌入式时，需要填充满整个区域
+.embed {
+  width: 100%;
+  height: 100%;
+}
+
+.slot-open {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .open-file-btn {
@@ -125,11 +148,13 @@ defineExpose({exit})
 }
 
 .full-screen-box {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  //width: 100vw;
+  //height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: #333333;
   // margin: 10vh 5vw;
   box-sizing: border-box;
