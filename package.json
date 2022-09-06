@@ -5,11 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "create:lib": "node ./scripts/create-lib.js",
-    "build": "pnpm --filter packages/main-front run build"
+    "create:lib": "node ./scripts/create-lib.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "模板",
+    "monorepo"
+  ],
+  "author": "CheeKhan",
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.3",
