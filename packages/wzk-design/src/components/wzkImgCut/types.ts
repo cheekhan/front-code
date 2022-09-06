@@ -18,6 +18,7 @@ export interface emitsType {
 export interface indexTypes {
     selfKey: Ref<number>,// 刷新组件用的key
     sourceBase64: Ref<string>, // 图片加载后的base64链接
+    containerId: Ref<string>, // 容器id
 
     exit(): void, // 退出函数
     handleClickGetFile(): void, // 上传一个原图

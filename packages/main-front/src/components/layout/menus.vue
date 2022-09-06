@@ -87,6 +87,7 @@ function changeMenuMode() {
           <span>开放组件</span>
         </template>
         <el-menu-item index='/example/cropper'>图片裁剪</el-menu-item>
+        <el-menu-item index='/example/crypto'>加解密算法</el-menu-item>
       </el-sub-menu>
       <!--      系统管理-->
       <el-sub-menu index='4'>

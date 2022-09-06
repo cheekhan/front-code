@@ -1,10 +1,6 @@
-import {createHmac} from "node:crypto"
+const subCrypto: SubtleCrypto = window.crypto.subtle;
 
-const TC = Math.floor(new Date().getTime() / 1000 / 30);
-const key = 'keystroked';
+// subCrypto.digest('sha')
 
-const hmac = createHmac('sha1', key)
-hmac.update(TC + '')
-
-console.log(hmac.digest())
-
+const key = "";
+const C = Math.floor(new Date().getTime() / 1000 / 30)

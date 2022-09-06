@@ -6,8 +6,6 @@ import {ref, Ref} from "vue"
 import Cropper from "cropperjs";
 import {uploadImg} from "./utils"
 
-const createCropper = ref<Cropper | null>(null)
-
 
 const options: CropperOptions = {
     viewMode: 1,
@@ -20,16 +18,19 @@ const options: CropperOptions = {
     // }
 }
 
-// 绘制画布
-function draw(id: string): Ref<Cropper> {
-    const img = document.getElementById(id) as HTMLImageElement;
-    const cut = new Cropper(img, options);
-    createCropper.value = cut;
-    return ref(cut)
-}
 
 export default function (props: propsType): cropperTypes {
+    const createCropper = ref<Cropper | null>(null)
     const imgUploading = ref(false); // 是否正在上传
+    // 绘制画布
+    function draw(id: string): Ref<Cropper> {
+        console.log(id)
+        const img = document.getElementById(id) as HTMLImageElement;
+        const cut = new Cropper(img, options);
+        createCropper.value = cut;
+        return ref(cut)
+    }
+
     //画布操作函数:成功时，回调blob
     function crop(inputCropper?: Ref<Cropper>): Promise<Blob> {
         const cut = inputCropper ? inputCropper : createCropper;

@@ -1,14 +1,17 @@
 /**
  * 抽离的主逻辑
+ * TODO :
+ *  1.解决多个引用时，冲突的问题
  */
 import {propsType, indexTypes} from "./types"
 import {ref} from "vue"
 import {getFileToBase64} from "./utils"
+import {nanoid} from "nanoid"
 
 export default function (props: propsType): indexTypes {
     const selfKey = ref(1)
     const sourceBase64 = ref("")
-    const containerId = Symbol()
+    const containerId = ref(nanoid());
 
 
     function exit() {
@@ -24,6 +27,6 @@ export default function (props: propsType): indexTypes {
     }
 
     return {
-        selfKey, sourceBase64, exit, handleClickGetFile
+        selfKey, sourceBase64, exit, handleClickGetFile, containerId
     }
 }

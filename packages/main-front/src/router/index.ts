@@ -8,6 +8,7 @@ import materialArticleList from '../views/material/articleMaterial/articleList.v
 
 //组件示例
 import ExampleCropper from "../views/example/cropper.vue"
+import ExampleCrypto from "../views/example/Crypto.vue"
 
 // 系统管理
 import systemConfigUserInfo from "../views/systemConfig/userConfig.vue"
@@ -28,7 +29,8 @@ const asyncRoute: RouteRecordRaw[] = [
         component: materialContainer,
         children: [
             {path: "", redirect: "/example/cropper"},
-            {path: "cropper", component: ExampleCropper}
+            {path: "cropper", component: ExampleCropper},
+            {path: "crypto", component: ExampleCrypto}
         ]
     },
     { // 系统配置

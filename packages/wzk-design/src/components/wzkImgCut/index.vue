@@ -1,5 +1,5 @@
 <template>
-  <div id='cheekhan-cropper-container' :class='embedStyle' :key='selfKey'>
+  <div class="cheekhan-cropper-container" :class='embedStyle' :key='selfKey'>
     <!-- 选择图片 -->
     <slot name='open'>
       <div class="slot-open">
@@ -15,7 +15,7 @@
             <span class='iconfont icon-xk-icon' title='取消' @click='exit'></span>
           </div>
           <div style='width:100%;height:100%'>
-            <img id='xk-cropper-img-box' :src='sourceBase64' alt='' @load='handleImgLoad'>
+            <img :id='containerId' class="xk-cropper-img-box" :src='sourceBase64' alt='' @load='handleImgLoad'>
           </div>
           <div class='tools'>
             <div>
@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import {defineEmits, defineProps, computed} from "vue"
+import {defineEmits, defineProps, computed, onMounted} from "vue"
 import index from "./index"
 import createCropper from "./createCropper";
 import "cropperjs/dist/cropper.css";
@@ -64,10 +64,10 @@ interface emitsType {
 const props = defineProps<propsType>();
 const emits = defineEmits<emitsType>();
 // 导入主逻辑
-const {selfKey, sourceBase64, exit, handleClickGetFile} = index(props);
-const containerId = Symbol()
+const {selfKey, sourceBase64, exit, handleClickGetFile, containerId} = index(props);
 // 导入剪切功能
-const {cropper, imgUploading, draw, crop, zoomIn, zoomOut, rotate, reset} = createCropper(props)
+const {cropper, imgUploading, draw, crop, zoomIn, zoomOut, rotate, reset} = createCropper(props);
+
 // 计算嵌入式的样式
 const embedStyle = computed(() => {
   return props.embed ? ['embed', 'pattern-dots-sm'] : []
@@ -75,7 +75,7 @@ const embedStyle = computed(() => {
 
 // 图片加载完成
 function handleImgLoad() {
-  draw('xk-cropper-img-box')
+  draw(containerId.value)
 }
 
 // 分别处理：缩小，放大，旋转，重置
@@ -118,7 +118,7 @@ defineExpose({exit})
   background-color: #333;
 }
 
-#cheekhan-cropper-container {
+.cheekhan-cropper-container {
   display: inline-block;
   position: relative;
 }
@@ -214,7 +214,7 @@ defineExpose({exit})
   }
 }
 
-#xk-cropper-img-box {
+.xk-cropper-img-box {
   display: block;
   max-width: 100%;
 }
