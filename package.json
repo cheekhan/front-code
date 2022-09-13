@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "create:lib": "node ./scripts/create-lib.js"
+    "create:lib": "node ./scripts/create-lib.js",
+    "dev": "pnpm --filter main-front run dev"
   },
   "keywords": [
     "模板",
