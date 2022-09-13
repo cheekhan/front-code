@@ -1,14 +1,11 @@
 <script lang="ts" setup>
 
 import {} from "vue"
-import {wzkImgCut} from "@cheekhan/design"
 
 </script>
 
 <template>
-  <h3>示例 - 图片裁剪组件</h3>
-  <wzkImgCut></wzkImgCut>
-
+  <h3 style="height:1200px;">组织结构管理</h3>
 </template>
 
 <style lang="less" scoped>
