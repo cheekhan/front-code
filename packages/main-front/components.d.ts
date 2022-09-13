@@ -7,19 +7,33 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AuthCtrlIcon: typeof import('./src/components/myIcons/authCtrlIcon.vue')['default']
+    DemoIcon: typeof import('./src/components/myIcons/DemoIcon.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
+    ElInput: typeof import('element-plus/es')['ElInput']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ExampleIcon: typeof import('./src/components/myIcons/ExampleIcon.vue')['default']
     Layout: typeof import('./src/components/layout/index.vue')['default']
     Menus: typeof import('./src/components/layout/menus.vue')['default']
+    PageLoading: typeof import('./src/components/screenLoading/pageLoading.vue')['default']
+    RequestLoading: typeof import('./src/components/screenLoading/requestLoading.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScreenLoading: typeof import('./src/components/screenLoading/index.vue')['default']
+    SystemCtrlIcon: typeof import('./src/components/myIcons/SystemCtrlIcon.vue')['default']
     TopBar: typeof import('./src/components/layout/topBar.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

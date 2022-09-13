@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cheekhan/api": "workspace:^1.0.0",
     "@cheekhan/design": "workspace:^0.0.2",
     "@element-plus/icons-vue": "^2.0.9",
-    "@wzk/api": "workspace:^1.0.0",
     "cropperjs": "^1.5.12",
     "element-plus": "^2.2.13",
     "nanoid": "^4.0.0",
