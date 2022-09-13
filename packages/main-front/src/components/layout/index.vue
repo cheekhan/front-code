@@ -8,13 +8,17 @@ import layTopBar from './topBar.vue';
 
 <template>
   <div class='container'>
+
     <lay-menus></lay-menus>
     <div class='right'>
       <layTopBar></layTopBar>
       <div class="router-container">
-        <router-view></router-view>
+        <el-scrollbar>
+          <router-view></router-view>
+        </el-scrollbar>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -43,6 +47,7 @@ import layTopBar from './topBar.vue';
   background-color: #fff;
   padding: 10px;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 </style>
